@@ -1,0 +1,26 @@
+### Files to be ignored by Git ###
+
+# Liferay auto deploy dir
+/liferay-deploy/*
+
+# Vagrant/Ansible
+/.vagrant
+/vagrant_ansible_inventory_*
+/provisioning/vars/liferay.yml
+
+# IntelliJ IDEA
+/*.ipr
+/*.iws
+/.idea
+**/*.iml
+
+# Eclipse
+/.classpath
+/.project
+/.settings
+
+# Mac
+**/.DS_Store
+
+# Custom
+/temp

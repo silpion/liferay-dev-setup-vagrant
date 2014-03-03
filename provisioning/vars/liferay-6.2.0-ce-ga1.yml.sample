@@ -1,0 +1,6 @@
+---
+# Predefined variables for the download and installation of the Liferay 6.2.0 Community Edition
+
+liferay_bundle_archive: liferay-portal-tomcat-6.2.0-ce-ga1-20131101192857659.zip
+liferay_download_base_url: http://sourceforge.net/projects/lportal/files/Liferay%20Portal/6.2.0%20GA1
+liferay_home_dir_name: liferay-portal-6.2.0-ce-ga1

@@ -1,0 +1,7 @@
+---
+
+- name: service liferay restart
+  tags: liferay
+  service:
+    state=restarted
+    name={{liferay_service_name}}

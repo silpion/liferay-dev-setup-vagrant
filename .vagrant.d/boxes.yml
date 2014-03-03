@@ -1,0 +1,8 @@
+precise:
+  base:       "ubuntu"
+  file:       "ubuntu-12.04-cloudimg.box"
+  uri:        "http://vagrant.silpion.de/boxes/ubuntu-12.04-cloudimg.box"
+  date:       "20131029"
+  packager:   "Mark Kusch <mark.kusch@silpion.de>"
+  comment:    "Ubuntu 12.04 Precise"
+

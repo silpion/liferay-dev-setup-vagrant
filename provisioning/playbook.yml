@@ -1,0 +1,14 @@
+---
+
+- hosts: all
+  sudo: true
+
+  vars_files:
+    - vars/main.yml
+    - vars/liferay.yml
+
+  roles:
+    - liferay
+    # These roles are already defined as a dependency of 'liferay'.
+    #- java
+    #- mysql

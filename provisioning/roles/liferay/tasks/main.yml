@@ -1,0 +1,126 @@
+---
+
+- name: install unzip
+  tags: liferay
+  apt:
+    state=latest
+    pkg={{item}}
+    update_cache=yes
+  with_items:
+    - unzip
+
+- name: create download cache dir
+  tags: liferay
+  sudo: false
+  local_action: file
+    state=directory
+    path={{ansible_cache_downloads}}
+
+- name: download bundle
+  tags: liferay
+  sudo: false
+  local_action: get_url
+    url={{liferay_download_base_url}}/{{liferay_bundle_archive}}
+    dest={{ansible_cache_downloads}}/{{liferay_bundle_archive}}
+
+- name: download mysql connector
+  tags: liferay
+  sudo: false
+  local_action: get_url
+    url={{mysql_connector_download_base_url}}/{{mysql_connector_archive}}
+    dest={{ansible_cache_downloads}}/{{mysql_connector_archive}}
+
+- name: create system group
+  tags: liferay
+  group:
+    state=present
+    system=yes
+    name={{liferay_service_group}}
+
+- name: create system user
+  tags: liferay
+  user:
+    state=present
+    system=yes
+    name={{liferay_service_user}}
+    group={{liferay_service_group}}
+    shell=/bin/bash
+
+- name: enable read access for maintainance users
+  tags: liferay
+  command: usermod -a -G {{liferay_service_group}} {{item}}
+  with_items: liferay_system_users_access
+  ignore_errors: yes
+  when: liferay_system_users_access is defined
+  # We don't use the 'user' module here, because absent users should not be created.
+
+- name: create installation base dir
+  tags: liferay
+  file:
+    state=directory
+    path={{liferay_base_dir}}
+    owner={{liferay_service_user}}
+    group={{liferay_service_group}}
+
+- name: install bundle
+  tags: liferay
+  unarchive:
+    src={{ansible_cache_downloads}}/{{liferay_bundle_archive}}
+    dest={{liferay_base_dir}}
+  notify: service liferay restart
+  # TODO Only if {{liferay_home_dir}} does not exist.
+
+- name: change installation owner
+  tags: liferay
+  file:
+    path={{liferay_home_dir}}
+    recurse=yes
+    owner={{liferay_service_user}}
+    group={{liferay_service_group}}
+  # TODO Could be removed if the 'unarchive' module would offer parameters 'owner' and 'group'.
+  # The 'unarchive' task above would be defined with 'sudo: true' and 'sudo_user: "{{liferay_service_user}}"' then.
+  # We cannot do this now, because the '/opt' directory is not writable for the '{{liferay_service_user}}' user.
+
+- name: copy mysql connector
+  tags: liferay
+  copy:
+    src={{ansible_cache_downloads}}/{{mysql_connector_archive}}
+    dest={{liferay_tomcat_dir}}/lib/ext
+    owner={{liferay_service_user}}
+    group={{liferay_service_group}}
+  notify: service liferay restart
+
+- name: copy portal properties
+  tags: liferay
+  template:
+    src=portal-ext.properties.j2
+    dest={{liferay_home_dir}}/portal-ext.properties
+    owner={{liferay_service_user}}
+    group={{liferay_service_group}}
+    mode=644
+  notify: service liferay restart
+
+- name: set service script mode
+  tags: liferay
+  file:
+    state=file
+    path={{liferay_tomcat_dir}}/bin/catalina.sh
+    owner={{liferay_service_user}}
+    group={{liferay_service_group}}
+    mode=755
+
+- name: copy service script wrapper
+  tags: liferay
+  template:
+    src=service.sh.j2
+    dest=/etc/init.d/{{liferay_service_name}}
+    owner={{liferay_service_user}}
+    group={{liferay_service_group}}
+    mode=755
+
+- name: define service
+  tags: liferay
+  service:
+    enabled=yes
+    name={{liferay_service_name}}
+    runlevel=3,5

@@ -1,0 +1,20 @@
+---
+
+liferay_base_dir: /opt/liferay
+liferay_home_dir: "{{liferay_base_dir}}/{{liferay_home_dir_name}}"
+liferay_tomcat_dir: "{{liferay_home_dir}}/tomcat-7.0.42"
+
+liferay_autodeploy_dir: "{{liferay_home_dir}}/deploy"
+
+liferay_service_name: liferay
+liferay_service_user: liferay
+liferay_service_group: liferay
+
+# Users that should get read access to the Liferay installation. Define in host_vars if necessary.
+#liferay_system_users_access:
+#  - user1
+#  - user2
+#  - ...
+
+mysql_connector_archive: "mysql-connector-java-{{mysql_connector_version}}.jar"
+mysql_connector_download_base_url: "http://search.maven.org/remotecontent?filepath=mysql/mysql-connector-java/{{mysql_connector_version}}"

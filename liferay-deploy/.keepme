@@ -1,0 +1,2 @@
+# This directory must be present, because it is synchronised into the VM as Liferay auto deploy directory.
+# And this hidden file ensures that the folder is created after checkout from file-based VCS (like Git).

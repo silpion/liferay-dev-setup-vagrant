@@ -1,0 +1,13 @@
+#!/bin/sh
+
+# Normally the 'daemon.sh' script should be used to start and
+# stop the service, but it doesn't seem to work very well.
+sudo -u {{liferay_service_user}} {{liferay_tomcat_dir}}/bin/catalina.sh $*
+
+# Restart: Ensure latency between stopping and starting the Tomcat.
+for ARG in ${*}; do
+  if [ "${ARG}" = "stop" ]; then
+    sleep 10
+    exit
+  fi
+done
