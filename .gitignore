@@ -6,7 +6,6 @@
 # Vagrant/Ansible
 /.vagrant
 /vagrant_ansible_inventory_*
-/provisioning/vars/liferay.yml
 
 # IntelliJ IDEA
 /*.ipr

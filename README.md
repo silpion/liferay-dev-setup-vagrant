@@ -29,18 +29,6 @@ installed:
 * [Ansible](http://www.ansibleworks.com)
 
 
-## Variables for Liferay version
-
-Before starting and using the VM (or running the _Ansible_ playbook to set up a
-server), the configuration for the Liferay version to be installed and its
-download location must be provided. The expected configuration file holding the
-regarding variables is ```provisioning/vars/liferay.yml``` - which has to be
-created by the user. There are already some sample configuration files holding
-the variables for the Liferay editions that might be installed:
-```provisioning/vars/liferay-[VERSION].yml.sample```. The one for the wanted
-Liferay edition can simplybe copied to ```provisioning/vars/liferay.yml```.
-
-
 ## Starting and using the VM
 
 See [Vagrant Documentation](http://docs.vagrantup.com) how to work with Vagrant.
@@ -87,6 +75,16 @@ To run the setup call:
     ansible-playbook provisioning/playbook.yml \
                      -i provisioning/inventory_[environment]
 
+### Variables for Liferay version
+
+The default variables define the (currently) latest version of the Liferay
+Community Edition for installation. If a server should be set up with another
+edition/version, those variables can be overwritten, e.g. in the regarding
+```provisioning/host_vars/[environment].yml``` file for the server to be set up.
+Prefedined variables for known editions can be found in the directory
+```provisioning/roles/liferay/edition_vars``` and can simply be copied to the
+```provisioning/host_vars/[environment].yml``` file.
+
 
 ## TODOs / Improvements
 
@@ -105,7 +103,7 @@ TODOs and improvments for this setup:
   but basically seems to work. Anyway, we should rather implement a proper
   solution with ```daemon.sh``` and ```jsvc```.
 * Avoid Liferay installation if ```{{liferay_home_dir}}``` already exists.
-* Add more ```provisioning/vars/liferay-[VERSION].yml.sample``` files for
-  further known Liferay editions.
+* Add more ```provisioning/roles/liferay/edition_vars/liferay-[VERSION].yml```
+  files for further known Liferay editions.
 
 Pull requests addressing any of those TODOs are very welcome!
