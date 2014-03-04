@@ -1,5 +1,3 @@
 ---
 
 ansible_cache_downloads: ~/.ansible/cache/downloads
-
-mysql_connector_version: 5.1.29
