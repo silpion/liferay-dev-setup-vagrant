@@ -1,0 +1,12 @@
+---
+# Sample variables for a Liferay server that should be set up with the underlying Ansible playbook.
+
+mysql_database_name: yourliferay
+mysql_database_user: yourliferay
+mysql_database_password: yourliferay
+
+# Users that should get read access to the Liferay installation.
+liferay_system_users_access:
+  - any-user
+  - other-user
+
