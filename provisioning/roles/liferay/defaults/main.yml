@@ -1,8 +1,8 @@
 ---
 
-liferay_bundle_archive: liferay-portal-tomcat-6.2.10.1-ee-ga1-20131126141110470.zip
+liferay_bundle_archive: liferay-portal-tomcat-6.2-ee-sp1-20140204095606875.zip
 liferay_download_base_url: http://ofguest@openfiler.office.silpion.de/mnt/vg_md1/vol1/public/Liferay/Software/Liferay/6.2.10/bundle
-liferay_home_dir_name: liferay-portal-6.2.10.1-ee-ga1
+liferay_home_dir_name: liferay-portal-6.2-ee-sp1
 
 liferay_base_dir: /opt/liferay
 liferay_home_dir: "{{liferay_base_dir}}/{{liferay_home_dir_name}}"

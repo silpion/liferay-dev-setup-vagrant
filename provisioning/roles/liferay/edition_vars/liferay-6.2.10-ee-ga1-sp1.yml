@@ -1,0 +1,6 @@
+---
+# Predefined variables for the download and installation of the Liferay 6.2.10 Enterprise Edition
+
+liferay_bundle_archive: liferay-portal-tomcat-6.2-ee-sp1-20140204095606875.zip
+liferay_download_base_url: http://ofguest@openfiler.office.silpion.de/mnt/vg_md1/vol1/public/Liferay/Software/Liferay/6.2.10/bundle
+liferay_home_dir_name: liferay-portal-6.2-ee-sp1
