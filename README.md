@@ -62,35 +62,35 @@ See _Setup prototype for Liferay development with Maven_.
 The Ansible playbook, that is used to provision the Vagrant VM, can also be used
 to set up the Liferay system (including MySQL and Java) on other environments
 (servers), too. For each additional environment, an inventory file
-```provisioning/inventory_[environment]``` has to be created. Replicate an
-existing inventory file and adjust its contents regarding to the new environment
-and/or see the documentation on the Ansible home page:
+```ansible/inventory_[environment]``` has to be created. Replicate an existing
+inventory file and adjust its contents regarding to the new environment and/or
+see the documentation on the Ansible home page:
 [Ansible Docs - Inventory](http://docs.ansible.com/intro_inventory.html).
 If the new environment requires custom configurations, create a file
-```provisioning/host_vars/[environment].yml``` and configure the variables that
+```ansible/host_vars/[environment].yml``` and configure the variables that
 should be overwritten.
 
 To run the setup call:
 
-    ansible-playbook provisioning/playbook.yml \
-                     -i provisioning/inventory_[environment]
+    ansible-playbook ansible/playbook.yml \
+                     -i ansible/inventory_[environment]
 
 ### Variables for Liferay version
 
 The default variables define the (currently) latest version of the Liferay
 Community Edition for installation. If a server should be set up with another
 edition/version, those variables can be overwritten, e.g. in the regarding
-```provisioning/host_vars/[environment].yml``` file for the server to be set up.
+```ansible/host_vars/[environment].yml``` file for the server to be set up.
 Prefedined variables for known editions can be found in the directory
-```provisioning/roles/liferay/edition_vars``` and can simply be copied to the
-```provisioning/host_vars/[environment].yml``` file.
+```ansible/roles/liferay/edition_vars``` and can simply be copied to the
+```ansible/host_vars/[environment].yml``` file.
 
 
 ## TODOs / Improvements
 
 TODOs and improvments for this setup:
 
-* The file ```provisioning/roles/mysql/tasks/main.yml``` defines a task
+* The file ```ansible/roles/mysql/tasks/main.yml``` defines a task
   _ensure root access_, that provides access rights to the _root_ user, so that
   the database and the database user can be for the _Liferay_ system can be
   created by the _Ansible_ scripts. The current solution for this task is good
@@ -103,7 +103,7 @@ TODOs and improvments for this setup:
   but basically seems to work. Anyway, we should rather implement a proper
   solution with ```daemon.sh``` and ```jsvc```.
 * Avoid Liferay installation if ```{{liferay_home_dir}}``` already exists.
-* Add more ```provisioning/roles/liferay/edition_vars/liferay-[VERSION].yml```
+* Add more ```ansible/roles/liferay/edition_vars/liferay-[VERSION].yml```
   files for further known Liferay editions.
 
 Pull requests addressing any of those TODOs are very welcome!

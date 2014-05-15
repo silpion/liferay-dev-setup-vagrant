@@ -27,7 +27,7 @@ Vagrant::VERSION >= '1.1.0' and Vagrant.configure('2') do |config|
   end
 
   config.vm.provision "ansible" do |ansible|
-    ansible.playbook = "provisioning/playbook.yml"
+    ansible.playbook = "ansible/playbook.yml"
     ansible.tags = ENV['TAGS']
   end
 
