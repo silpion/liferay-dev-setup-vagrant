@@ -5,20 +5,9 @@
 # Liferay Server with MySQL database for local developement
 # 2014-01-02
 
-require File.dirname(__FILE__) + '/.vagrant.d/boxes.rb'
-
-BOX_NAME = 'precise'
-BOX = BOXES[BOX_NAME]
-
-
-Vagrant::Config.run do |config|
-
-  config.vm.box = BOX_NAME
-  config.vm.box_url = BOX['uri']
-
-end
-
 Vagrant::VERSION >= '1.1.0' and Vagrant.configure('2') do |config|
+
+  config.vm.box = 'ubuntu/trusty64'
 
   config.vm.hostname = 'liferay-dev'
 
