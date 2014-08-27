@@ -4,7 +4,6 @@
   sudo: true
 
   roles:
+    - mysql
+    - java
     - liferay
-    # These roles are already defined as a dependency of 'liferay'.
-    #- java
-    #- mysql
