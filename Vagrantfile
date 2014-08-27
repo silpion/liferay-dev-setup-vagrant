@@ -7,28 +7,39 @@
 
 Vagrant::VERSION >= '1.1.0' and Vagrant.configure('2') do |config|
 
-  config.vm.box = 'ubuntu/trusty64'
+  config.vm.define :liferay do |liferay|
 
-  config.vm.hostname = 'liferay-dev'
+    liferay.vm.box = 'ubuntu/trusty64'
 
-  if Vagrant.has_plugin?("vagrant-cachier")
-    config.cache.auto_detect = true
-  end
+    liferay.vm.hostname = 'liferay'
 
-  config.vm.provision "ansible" do |ansible|
-    ansible.playbook = "ansible/playbook.yml"
-    ansible.tags = ENV['TAGS']
-  end
+    if Vagrant.has_plugin?("vagrant-cachier")
+      liferay.cache.auto_detect = true
+    end
 
-  config.vm.synced_folder "liferay-deploy", "/vagrant/liferay-deploy",
-    mount_options: ["dmode=777,fmode=777"]
+    liferay.vm.provision "ansible" do |ansible|
+      ansible.playbook = "ansible/playbook.yml"
 
-  config.vm.network :forwarded_port, guest: 8080, host: 18080
+      ansible.tags = ENV['ANSIBLE_TAGS']
 
-  config.vm.provider :virtualbox do |vb|
-    vb.customize [
-      'modifyvm', :id, '--name', 'liferay-dev', '--memory', '2048', '--cpus', '1'
-    ]
+      ansible.groups = {
+        'vagrant' => ['liferay']
+      }
+      ansible.limit = 'vagrant'
+
+    end
+
+    liferay.vm.synced_folder "liferay-deploy", "/vagrant/liferay-deploy",
+      mount_options: ["dmode=777,fmode=777"]
+
+    liferay.vm.network :forwarded_port, guest: 8080, host: 18080
+
+    liferay.vm.provider :virtualbox do |vb|
+      vb.customize [
+        'modifyvm', :id, '--name', 'liferay', '--memory', '2048', '--cpus', '1'
+      ]
+    end
+
   end
 
 end
