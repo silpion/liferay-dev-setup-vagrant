@@ -1,7 +1,9 @@
 ---
 
 - hosts: all
+
   sudo: true
+  sudo_user: root
 
   roles:
     - mysql
