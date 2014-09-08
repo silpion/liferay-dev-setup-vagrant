@@ -2,6 +2,17 @@
 # Variables for default Vagrant VM
 
 
+# Configure MySQL installation
+mysql_db:
+  - name: lportal
+    replicate: no
+
+mysql_users:
+     - name: lportal
+       pass: lportal
+       priv: "*.*:ALL"
+
+
 # Configure Java installation - for property documentation see ansible/roles/java/defaults/main.yml
 java_default_distribution: 'jdk'
 java_default_implementation: 'oracle'
