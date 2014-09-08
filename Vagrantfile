@@ -14,6 +14,7 @@ Vagrant::VERSION >= '1.1.0' and Vagrant.configure('2') do |config|
     liferay.vm.hostname = 'liferay'
 
     if Vagrant.has_plugin?("vagrant-cachier")
+      liferay.cache.scope       = :box
       liferay.cache.auto_detect = true
     end
 
