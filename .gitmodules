@@ -1,0 +1,3 @@
+[submodule "ansible/roles/java"]
+	path = ansible/roles/java
+	url = https://github.com/silpion/ansible-java.git

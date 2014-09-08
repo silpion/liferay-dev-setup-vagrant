@@ -1,5 +1,8 @@
 #!/bin/sh
 
+# Set the required environment variable(s)
+export JAVA_HOME={{java_home}}
+
 # Normally the 'daemon.sh' script should be used to start and
 # stop the service, but it doesn't seem to work very well.
 sudo -u {{liferay_service_user}} {{liferay_tomcat_dir}}/bin/catalina.sh $*
