@@ -30,3 +30,5 @@ java_oracle_redis_jdk_sha256sum: '77367c3ef36e0930bf3089fb41824f4b8cf55dcc8f43cc
 
 # Configure Liferay installation
 liferay_autodeploy_dir: /vagrant/liferay-deploy
+
+liferay_enable_remote_debug: true
