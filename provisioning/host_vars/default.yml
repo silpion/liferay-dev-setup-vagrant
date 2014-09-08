@@ -1,4 +1,0 @@
----
-# Variables for default Vagrant VM
-
-liferay_autodeploy_dir: /vagrant/liferay-deploy

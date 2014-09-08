@@ -1,5 +1,0 @@
----
-
-dependencies:
-  - role: mysql
-  - role: java
