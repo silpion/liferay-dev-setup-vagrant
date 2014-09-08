@@ -1,0 +1,4 @@
+---
+
+# Path for ansible to store downloaded or templated data
+ansible_data_path: /usr/local/src/ansible/data
