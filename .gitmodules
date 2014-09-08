@@ -4,3 +4,6 @@
 [submodule "ansible/roles/mysql"]
 	path = ansible/roles/mysql
 	url = https://github.com/bennojoy/mysql.git
+[submodule "ansible/roles/liferay"]
+	path = ansible/roles/liferay
+	url = https://github.com/silpion/ansible-liferay.git
