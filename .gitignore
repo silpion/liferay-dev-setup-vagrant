@@ -3,9 +3,8 @@
 # Liferay auto deploy dir
 /liferay-deploy/*
 
-# Vagrant/Ansible
+# Vagrant
 /.vagrant
-/vagrant_ansible_inventory_*
 
 # IntelliJ IDEA
 /*.ipr

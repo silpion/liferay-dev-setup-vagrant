@@ -11,24 +11,26 @@
 
 - name: create download cache dir
   tags: liferay
-  sudo: false
   local_action: file
     state=directory
-    path={{ansible_cache_downloads}}
+    owner=0
+    group=0
+    mode=2777
+    path={{ansible_data_path}}
 
 - name: download bundle
   tags: liferay
-  sudo: false
   local_action: get_url
     url={{liferay_download_base_url}}/{{liferay_bundle_archive}}
-    dest={{ansible_cache_downloads}}/{{liferay_bundle_archive}}
+    dest={{ansible_data_path}}/{{liferay_bundle_archive}}
+    mode=0644
 
 - name: download mysql connector
   tags: liferay
-  sudo: false
   local_action: get_url
     url={{mysql_connector_download_base_url}}/{{mysql_connector_archive}}
-    dest={{ansible_cache_downloads}}/{{mysql_connector_archive}}
+    dest={{ansible_data_path}}/{{mysql_connector_archive}}
+    mode=0644
 
 - name: create system group
   tags: liferay
@@ -65,7 +67,7 @@
 - name: install bundle
   tags: liferay
   unarchive:
-    src={{ansible_cache_downloads}}/{{liferay_bundle_archive}}
+    src={{ansible_data_path}}/{{liferay_bundle_archive}}
     dest={{liferay_base_dir}}
   notify: service liferay restart
   # TODO Only if {{liferay_home_dir}} does not exist.
@@ -84,7 +86,7 @@
 - name: copy mysql connector
   tags: liferay
   copy:
-    src={{ansible_cache_downloads}}/{{mysql_connector_archive}}
+    src={{ansible_data_path}}/{{mysql_connector_archive}}
     dest={{liferay_tomcat_dir}}/lib/ext
     owner={{liferay_service_user}}
     group={{liferay_service_group}}
