@@ -28,6 +28,9 @@ installed:
 * [Vagrant](http://vagrantup.com)
 * [Ansible](http://www.ansibleworks.com)
 
+**Please note** that the download tasks in (some of) the role submodules require
+passwordless sudo on Your local host, because the archives are cached a directory,
+that normally isn't beyond user access (see ``ansible_data_path`` configuration).
 
 ## Starting and using the VM
 
