@@ -46,7 +46,7 @@ Important commands are:
 ## Using the VM
 
 After the VM is successfully started and provisioned, open
-[http://localhost:18080/](http://localhost:18080/) in a browser and follow the
+[http://localhost:8080/](http://localhost:8080/) in a browser and follow the
 requested steps. Sign in with the default admin user:
 * Email Address: `test@liferay.com`
 * Password: `test`

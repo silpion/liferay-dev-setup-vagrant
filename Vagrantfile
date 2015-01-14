@@ -33,7 +33,7 @@ Vagrant::VERSION >= '1.1.0' and Vagrant.configure('2') do |config|
     liferay.vm.synced_folder "liferay-deploy", "/vagrant/liferay-deploy",
       mount_options: ["dmode=777,fmode=777"]
 
-    liferay.vm.network :forwarded_port, guest: 8080, host: 18080
+    liferay.vm.network :forwarded_port, guest: 8080, host: 8080
     liferay.vm.network :forwarded_port, guest: 8000, host: 8000
 
     liferay.vm.provider :virtualbox do |vb|
