@@ -1,12 +1,27 @@
 ---
 # Sample variables for a Liferay server that should be set up with the underlying Ansible playbook.
 
-mysql_database_name: yourliferay
-mysql_database_user: yourliferay
-mysql_database_password: yourliferay
+
+# Configure MySQL installation
+mysql_db:
+  - name: yourliferay
+    replicate: no
+
+mysql_users:
+     - name: yourliferay
+       pass: yourliferay
+       priv: "*.*:ALL"
+
+
+# Configure Java installation - for property documentation see ansible/roles/java/defaults/main.yml
+java_oracle_version: 7u71
+
+
+# Configure Liferay installation (if not using the default version)
+#liferay_version: 6.2-ee-sp9
+
 
 # Users that should get read access to the Liferay installation.
 liferay_system_users_access:
   - any-user
   - other-user
-
